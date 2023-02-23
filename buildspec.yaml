@@ -1,56 +1,26 @@
-# version: 0.2
-
-# env:
-#     variables:
-#         CACHE_CONTROL: "86400"
-#         S3_BUCKET: "{{s3_bucket_url}}"
-#         BUILD_FOLDER: "dist"
-# phases:
-#   install:
-#     runtime-versions:
-#         nodejs: 10
-#     commands:
-        
-#         - echo Installing source NPM dependencies...
-#         - npm install
-#         - npm install -g @angular/cli
-#   build:
-#     commands:
-#         - echo Build started
-#         - ng build
-#         -  echo Build complete
-# artifacts:
-#     files:
-#         - '*/'
-#     base-directory: 'dist*'
-#     discard-paths: yes
 version: 0.2
+
 env:
-  variables:
-    APP_NAME: "projectname"
-    CACHE_CONTORL : "86400"
-    S3_BUCKET: "https://s3.amazonaws.com/test1.project.com/"
-    BUILD_FOLDER: "projectname-ng/dist"
+    variables:
+        CACHE_CONTROL: "86400"
+        S3_BUCKET: "{{s3_bucket_url}}"
+        BUILD_FOLDER: "dist"
 phases:
   install:
     runtime-versions:
-      nodejs: 18.10
+        nodejs: 14
     commands:
-      - echo install process started
-      - npm install -g @angular/cli
-      - cd project-name-ng
-      - npm install
+        
+        - echo Installing source NPM dependencies...
+        - npm install
+        - npm install -g @angular/cli
   build:
     commands:
-      - echo build process started now
-      - ng build --configuration production && ng run project-name:server
-      - echo Archiving to deployment.zip
-      - node archive.js
-  post_build:
-    commands:
-      - echo build process finished, we should uplload to S3 now
-
+        - echo Build started
+        - ng build
+        -  echo Build complete
 artifacts:
     files:
-      - '**/*'
-    base-directory: 'projectname-ng/dist'
+        - '**/*'
+    base-directory: 'dist*'
+    discard-paths: yes
