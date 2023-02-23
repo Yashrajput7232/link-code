@@ -10,19 +10,15 @@ phases:
     runtime-versions:
         nodejs: 14
     commands:
-        
         - echo Installing source NPM dependencies...
         - npm install
         - npm install -g @angular/cli
-        
   build:
     commands:
-        - echo Build started
+        - echo Build started 
         - ng build
-        - echo Build complete
-        
 artifacts:
     files:
         - '**/*'
-    base-directory: 'dist/*'
+    base-directory: 'dist*'
     discard-paths: yes
